@@ -53,6 +53,16 @@ Before contributing to Keycloak please read our [contributing guidelines](CONTRI
 * [Keycloak Node.js Admin Client](https://github.com/keycloak/keycloak-nodejs-admin-client) - Node.js library for Keycloak Admin REST API
 
 
+## jboss-cli
+
+```
+docker run -it --rm --network keycloak-network --volume="$(pwd):/app" --workdir=/app --entrypoint "sh" keycloak-containers_keycloak /opt/jboss/keycloak/bin/jboss-cli.sh
+```
+```
+connect keycloak:9990
+```
+
+
 ## License
 
 * [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
