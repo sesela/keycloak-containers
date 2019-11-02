@@ -32,7 +32,7 @@ Please remember to provide a good summary, description as well as steps to repro
 
 To run Keycloak, run:
 
-    docker run jboss/keycloak
+    docker-compose up -d
     
 For more details refer to the [Keycloak server image documentation](server/README.md).
 
