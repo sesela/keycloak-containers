@@ -37,6 +37,10 @@ if [ -n "$KEYCLOAK_USER" ] && [ -n "$KEYCLOAK_PASSWORD" ]; then
     /opt/jboss/keycloak/bin/add-user-keycloak.sh --user "$KEYCLOAK_USER" --password "$KEYCLOAK_PASSWORD"
 fi
 
+
+
+
+
 ############
 # Hostname #
 ############
@@ -84,9 +88,24 @@ SYS_PROPS+=" $BIND_OPTS"
 # Expose management console for metrics #
 #########################################
 
-if [ -n "$KEYCLOAK_STATISTICS" ] ; then 
+if [ -n "$KEYCLOAK_STATISTICS" ] || ( [ -n "$MGMT_USER" ] && [ -n "$MGMT_PASSWORD" ] ); then 
     SYS_PROPS+=" -Djboss.bind.address.management=0.0.0.0"
 fi
+
+
+if [ -n "$MGMT_USER" ] && [ -n "$MGMT_PASSWORD" ]; then
+    /opt/jboss/keycloak/bin/add-user.sh --user "$MGMT_USER" --password "$MGMT_PASSWORD"
+fi
+
+
+#################
+# REMOTE DEBUG  #
+#################
+OTHER_PROPS=""
+if [ "$DEBUG_PORT" != "" ]; then
+    OTHER_PROPS+=" --debug *:$DEBUG_PORT"
+fi
+
 
 #################
 # Configuration #
@@ -220,5 +239,5 @@ fi
 # Start Keycloak #
 ##################
 
-exec /opt/jboss/keycloak/bin/standalone.sh $SYS_PROPS $@
+exec /opt/jboss/keycloak/bin/standalone.sh $SYS_PROPS $OTHER_PROPS $@
 exit $?
