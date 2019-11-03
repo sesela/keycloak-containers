@@ -56,7 +56,7 @@ Before contributing to Keycloak please read our [contributing guidelines](CONTRI
 ## jboss-cli
 
 ```
-docker run -it --rm --network keycloak-network --volume="$(pwd):/app" --workdir=/app --entrypoint "sh" keycloak-containers_keycloak /opt/jboss/keycloak/bin/jboss-cli.sh
+docker run -it --rm --network keycloak-network --volume="$(pwd):/app" --workdir=/app --entrypoint "sh" custom.keycloak /opt/jboss/keycloak/bin/jboss-cli.sh
 ```
 ```
 connect keycloak:9990
