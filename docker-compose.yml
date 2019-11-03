@@ -30,6 +30,8 @@ services:
         - 9990:9990
         - 8080:8080
         - 5005:5005
+      volumes:
+        - ./developments:/opt/jboss/keycloak/standalone/deployments
       depends_on:
         - postgres
 
