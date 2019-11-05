@@ -62,6 +62,11 @@ docker run -it --rm --network keycloak-network --volume="$(pwd):/app" --workdir=
 connect keycloak:9990
 ```
 
+or
+
+```
+docker run -it --rm --network keycloak-network --volume="$(pwd):/app" --workdir=/app --entrypoint "sh" custom.keycloak /opt/jboss/keycloak/bin/jboss-cli.sh --connect --controller=keycloak:9990 --user=admin --password=password 
+```
 
 ## License
 
